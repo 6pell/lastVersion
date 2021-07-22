@@ -66,7 +66,7 @@ string View::showAddEmail() {
 
 string View::getKeyToSearchProfile() {
     string keyWord;
-    cout << "The word by which you want to find a profile =";
+    cout << "The word by which you want to find a profile = ";
     cin >> keyWord;
     return keyWord;
 }

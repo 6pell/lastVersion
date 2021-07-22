@@ -1,6 +1,6 @@
 #ifndef PresenterH
 #define PresenterH
-
+#pragma once
 #include <vector>
 #include <string>
 #include"Model.h"
