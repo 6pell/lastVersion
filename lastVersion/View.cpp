@@ -9,12 +9,12 @@
 char View::getStartChoice()
 {
     char choice;
-    cout << "Ââåäèòå (1) ÷òîáû ïîñìîòðåòü âñå ïðîôèëè" << endl;
-    cout << "Ââåäèòå (2) ÷òîáû äîáàâèòü ïðîôèëü" << endl;
-    cout << "Ââåäèòå (3) ÷òîáû ðåäàêòèðîâàòü" << endl;
-    cout << "Ââåäèòå (4) ÷òîáû óäàëèòü ïðîôèëü" << endl;
-    cout << "Ââåäèòå (5) ÷òîáû íàéòè ïðîôèëü" << endl;
-    cout << "Ââåäèòå (6) ÷òîáû âûéòè" << endl;
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ (1) Ã·Ã²Ã®Ã¡Ã» Ã¯Ã®Ã±Ã¬Ã®Ã²Ã°Ã¥Ã²Ã¼ Ã¢Ã±Ã¥ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¨" << endl;
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ (2) Ã·Ã²Ã®Ã¡Ã» Ã¤Ã®Ã¡Ã Ã¢Ã¨Ã²Ã¼ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¼" << endl;
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ (3) Ã·Ã²Ã®Ã¡Ã» Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã®Ã¢Ã Ã²Ã¼" << endl;
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ (4) Ã·Ã²Ã®Ã¡Ã» Ã³Ã¤Ã Ã«Ã¨Ã²Ã¼ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¼" << endl;
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ (5) Ã·Ã²Ã®Ã¡Ã» Ã­Ã Ã©Ã²Ã¨ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¼" << endl;
+    cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ (6) Ã·Ã²Ã®Ã¡Ã» Ã¢Ã»Ã©Ã²Ã¨" << endl;
     cin >> choice;
     return choice;
 };
@@ -23,7 +23,7 @@ char View::getStartChoice()
 void View::showAllProfile(int i, people x)
 {
     cout << "\n";
-    cout << "/***Ïðîôèëü ¹" << i + 1 << "**" << endl;
+    cout << "/***ÃÃ°Ã®Ã´Ã¨Ã«Ã¼ Â¹" << i + 1 << "**" << endl;
     cout << x.name << endl;
     cout << x.surname << endl;
     cout << x.numberphone << endl;
@@ -66,7 +66,7 @@ string View::showAddEmail() {
 
 string View::getKeyToSearchProfile() {
     string keyWord;
-    cout << "Ñëîâî ïî êîòîðîìó õîòèòå íàéòè ïðîôèëü = ";
+    cout << "Ã‘Ã«Ã®Ã¢Ã® Ã¯Ã® ÃªÃ®Ã²Ã®Ã°Ã®Ã¬Ã³ ÃµÃ®Ã²Ã¨Ã²Ã¥ Ã­Ã Ã©Ã²Ã¨ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¼ = ";
     cin >> keyWord;
     return keyWord;
 }
@@ -82,7 +82,7 @@ void View::showFoundProfile(people x) {
     }
     else {
         cout << "\n";
-        cout << "Ïðîôèëü" << endl;
+        cout << "ÃÃ°Ã®Ã´Ã¨Ã«Ã¼" << endl;
         cout << x.name << endl;
         cout << x.surname << endl;
         cout << x.numberphone << endl;
@@ -93,10 +93,8 @@ void View::showFoundProfile(people x) {
 
 int View::getTheNumberOfTheDeleteProfile(int vecSize) {
     int numberProfile;
-    cout << "Êàêîé ïðîôèëü õîòèòå óäàëèòü?" << endl;
-    cin >> numberProfile;
     while (true) {
-        cout << "Êàêîé ïðîôèëü âû õîòèòå èçìåíèòü?" << endl;
+        cout << "ÃŠÃ ÃªÃ®Ã© Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¼ Ã¢Ã» ÃµÃ®Ã²Ã¨Ã²Ã¥ Ã¨Ã§Ã¬Ã¥Ã­Ã¨Ã²Ã¼?" << endl;
         cin >> numberProfile;
         if (cin.fail())
         {
@@ -110,7 +108,7 @@ int View::getTheNumberOfTheDeleteProfile(int vecSize) {
         }
     }
     while (numberProfile > vecSize) {
-        cout << "Ó íàñ íåò ñòîëüêî ïðîôèëåé, ââåäè îò 1 äî " << vecSize << endl;
+        cout << "Ã“ Ã­Ã Ã± Ã­Ã¥Ã² Ã±Ã²Ã®Ã«Ã¼ÃªÃ® Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¥Ã©, Ã¢Ã¢Ã¥Ã¤Ã¨ Ã®Ã² 1 Ã¤Ã® " << vecSize << endl;
         cin >> numberProfile;
         numberProfile -= 1;
         if (numberProfile <= vecSize) {
@@ -125,7 +123,7 @@ int View::getNumberProfileToEdit(int vecSize) {
     string replacement;
 
     while (true) {
-        cout << "Êàêîé ïðîôèëü âû õîòèòå èçìåíèòü?" << endl;
+        cout << "ÃŠÃ ÃªÃ®Ã© Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¼ Ã¢Ã» ÃµÃ®Ã²Ã¨Ã²Ã¥ Ã¨Ã§Ã¬Ã¥Ã­Ã¨Ã²Ã¼?" << endl;
         cin >> numberProfile;
         if (cin.fail())
         {
@@ -139,7 +137,7 @@ int View::getNumberProfileToEdit(int vecSize) {
         }
     }
     while (numberProfile > vecSize) {
-        cout << "Ó íàñ íåò ñòîëüêî ïðîôèëåé, ââåäè îò 1 äî " << vecSize << endl;
+        cout << "Ã“ Ã­Ã Ã± Ã­Ã¥Ã² Ã±Ã²Ã®Ã«Ã¼ÃªÃ® Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¥Ã©, Ã¢Ã¢Ã¥Ã¤Ã¨ Ã®Ã² 1 Ã¤Ã® " << vecSize << endl;
         cin >> numberProfile;
         if (numberProfile <= vecSize) {
             break;
@@ -152,7 +150,7 @@ int View::getNumberProfileToEdit(int vecSize) {
 char View::getChoice() {
     
     char b;
-    cout << "Èçìåíèòü Name(1), Surname(2), Phone(3), Email(4)" << endl;
+    cout << "ÃˆÃ§Ã¬Ã¥Ã­Ã¨Ã²Ã¼ Name(1), Surname(2), Phone(3), Email(4)" << endl;
     cin >> b;
     return b;
 }
@@ -161,19 +159,19 @@ string View::getReplacementWord(char b,people x, int d) {
     string replacement;
     d -= 1;
     if (b == '1') {
-        cout << "Èìÿ êîòîðîå çàïèñàíîå â ïðîôèëå = " << x.name << ", ââåäèòå äðóãîå èìÿ ";
+        cout << "ÃˆÃ¬Ã¿ ÃªÃ®Ã²Ã®Ã°Ã®Ã¥ Ã§Ã Ã¯Ã¨Ã±Ã Ã­Ã®Ã¥ Ã¢ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¥ = " << x.name << ", Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã®Ã¥ Ã¨Ã¬Ã¿ ";
         cin >> replacement;
     }
     else if (b == '2') {
-        cout << "Ôàìèëèÿ êîòîðîÿ çàïèñàíà â ïðîôèëå = " << x.surname << ", ââåäèòå äðóãóþ ôàìèëèþ ";
+        cout << "Ã”Ã Ã¬Ã¨Ã«Ã¨Ã¿ ÃªÃ®Ã²Ã®Ã°Ã®Ã¿ Ã§Ã Ã¯Ã¨Ã±Ã Ã­Ã  Ã¢ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¥ = " << x.surname << ", Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã³Ã¾ Ã´Ã Ã¬Ã¨Ã«Ã¨Ã¾ ";
         cin >> replacement;
     }
     else if (b == '3') {
-        cout << "Íîìåð êîòîðûé çàïèñàí â ïðîôèëå = " << x.numberphone << ", ââåäèòå äðóãîé íîìåð ";
+        cout << "ÃÃ®Ã¬Ã¥Ã° ÃªÃ®Ã²Ã®Ã°Ã»Ã© Ã§Ã Ã¯Ã¨Ã±Ã Ã­ Ã¢ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¥ = " << x.numberphone << ", Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã®Ã© Ã­Ã®Ã¬Ã¥Ã° ";
         cin >> replacement;
     }
     else if (b == '4') {
-        cout << "Ïî÷òà êîòîðîÿ çàïèñàíà â ïðîôèëå = " << x.email << ", ââåäèòå äðóãóþ ïî÷òó ";
+        cout << "ÃÃ®Ã·Ã²Ã  ÃªÃ®Ã²Ã®Ã°Ã®Ã¿ Ã§Ã Ã¯Ã¨Ã±Ã Ã­Ã  Ã¢ Ã¯Ã°Ã®Ã´Ã¨Ã«Ã¥ = " << x.email << ", Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã³Ã¾ Ã¯Ã®Ã·Ã²Ã³ ";
         cin >> replacement;
     }
     return replacement;
@@ -187,7 +185,7 @@ string View::showCheckRepeatWordWithCurrent(string editReplaceWord, people x, in
         
         if (b == '1') {
             if (editReplaceWord == x.name) {
-                cout << "Ýòî ñëîâî ñîâïàäàåò ñ òåì êàêîå âû õîòèòå ðåäàêòèðîâàòü, ââåäèòå äðóãîå" << endl;
+                cout << "ÃÃ²Ã® Ã±Ã«Ã®Ã¢Ã® Ã±Ã®Ã¢Ã¯Ã Ã¤Ã Ã¥Ã² Ã± Ã²Ã¥Ã¬ ÃªÃ ÃªÃ®Ã¥ Ã¢Ã» ÃµÃ®Ã²Ã¨Ã²Ã¥ Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã®Ã¢Ã Ã²Ã¼, Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã®Ã¥" << endl;
                 cin >> editReplaceWord;
             }
             else {
@@ -196,7 +194,7 @@ string View::showCheckRepeatWordWithCurrent(string editReplaceWord, people x, in
         }
         else if (b == '2') {
             if (editReplaceWord == x.surname) {
-                cout << "Ýòî ñëîâî ñîâïàäàåò ñ òåì êàêîå âû õîòèòå ðåäàêòèðîâàòü, ââåäèòå äðóãîå" << endl;
+                cout << "ÃÃ²Ã® Ã±Ã«Ã®Ã¢Ã® Ã±Ã®Ã¢Ã¯Ã Ã¤Ã Ã¥Ã² Ã± Ã²Ã¥Ã¬ ÃªÃ ÃªÃ®Ã¥ Ã¢Ã» ÃµÃ®Ã²Ã¨Ã²Ã¥ Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã®Ã¢Ã Ã²Ã¼, Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã®Ã¥" << endl;
                 cin >> editReplaceWord;
             }
             else {
@@ -205,7 +203,7 @@ string View::showCheckRepeatWordWithCurrent(string editReplaceWord, people x, in
         }
         else if (b == '3') {
             if (editReplaceWord == x.numberphone) {
-                cout << "Ýòî ñëîâî ñîâïàäàåò ñ òåì êàêîå âû õîòèòå ðåäàêòèðîâàòü, ââåäèòå äðóãîå" << endl;
+                cout << "ÃÃ²Ã® Ã±Ã«Ã®Ã¢Ã® Ã±Ã®Ã¢Ã¯Ã Ã¤Ã Ã¥Ã² Ã± Ã²Ã¥Ã¬ ÃªÃ ÃªÃ®Ã¥ Ã¢Ã» ÃµÃ®Ã²Ã¨Ã²Ã¥ Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã®Ã¢Ã Ã²Ã¼, Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã®Ã¥" << endl;
                 cin >> editReplaceWord;
             }
             else {
@@ -214,7 +212,7 @@ string View::showCheckRepeatWordWithCurrent(string editReplaceWord, people x, in
         }
         else if (b == '4') {
             if (editReplaceWord == x.email) {
-                cout << "Ýòî ñëîâî ñîâïàäàåò ñ òåì êàêîå âû õîòèòå ðåäàêòèðîâàòü, ââåäèòå äðóãîå" << endl;
+                cout << "ÃÃ²Ã® Ã±Ã«Ã®Ã¢Ã® Ã±Ã®Ã¢Ã¯Ã Ã¤Ã Ã¥Ã² Ã± Ã²Ã¥Ã¬ ÃªÃ ÃªÃ®Ã¥ Ã¢Ã» ÃµÃ®Ã²Ã¨Ã²Ã¥ Ã°Ã¥Ã¤Ã ÃªÃ²Ã¨Ã°Ã®Ã¢Ã Ã²Ã¼, Ã¢Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¤Ã°Ã³Ã£Ã®Ã¥" << endl;
                 cin >> editReplaceWord;
             }
             else {
