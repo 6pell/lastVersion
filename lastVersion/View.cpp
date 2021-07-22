@@ -101,16 +101,13 @@ int View::getTheNumberOfTheDeleteProfile(int vecSize) {
             cin.clear();
             cin.ignore(32767, '\n');
         }
-        else
-        {
-            numberProfile -= 1;
-            return numberProfile;
+        else {
+            break;
         }
     }
     while (numberProfile > vecSize) {
-        cout << "We don't have that many profiles, please enter from 1 to" << vecSize << endl;
+        cout << "We don't have that many profiles, please enter from 1 to " << vecSize << endl;
         cin >> numberProfile;
-        numberProfile -= 1;
         if (numberProfile <= vecSize) {
             break;
         }
@@ -159,19 +156,19 @@ string View::getReplacementWord(char b,people x, int d) {
     string replacement;
     d -= 1;
     if (b == '1') {
-        cout << "The name that is written in the file = " << x.name << ", enter another name";
+        cout << "The name that is written in the file = " << x.name << ", enter another name ";
         cin >> replacement;
     }
     else if (b == '2') {
-        cout << "Surname which is written in the file = "<< x.surname <<", enter another surname";
+        cout << "Surname which is written in the file = "<< x.surname <<", enter another surname ";
         cin >> replacement;
     }
     else if (b == '3') {
-        cout << "The number recorded in the file =" << x.numberphone << ", please enter another number";
+        cout << "The number recorded in the file =" << x.numberphone << ", please enter another number ";
         cin >> replacement;
     }
     else if (b == '4') {
-        cout << "Mail which is written in the file =" << x.email << ", please enter another mail";
+        cout << "Mail which is written in the file =" << x.email << ", please enter another mail ";
         cin >> replacement;
     }
     return replacement;

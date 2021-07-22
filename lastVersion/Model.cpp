@@ -9,7 +9,7 @@
 
 using namespace std;
 
-// OPEN //проверка на повторение нормера при работе в ADD
+// OPEN //check for repetition of the normer when working in ADD
 bool Model::checkRepeatWordNumber(string tempNumber, int vectorSize)
 {
     int repeatCounter = 0;
@@ -29,9 +29,11 @@ bool Model::checkRepeatWordNumber(string tempNumber, int vectorSize)
         return false;
     }
 };
-// CLOSE //проверка на повторение нормера при работе в ADD
+// CLOSE //check for repetition of the normer when working in ADD
 
-// OPEN //Валидация Email
+
+
+// OPEN //validation Email
 bool Model::IsEmail(const string& str)
 {
     const regex emailRegEx("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$");
@@ -43,7 +45,6 @@ bool Model::checkEmail(const string& str)
     View myView;
     string temp = str;
     const bool isEmail = IsEmail(temp);
-    //bool isEmail = IsEmail(temp);
     if (isEmail == false) {
         return false;
     }
@@ -51,13 +52,19 @@ bool Model::checkEmail(const string& str)
         return true;
     }
 }
-// CLOSE //Валидация Email
+// CLOSE //validation Email
 
+
+
+// OPEN //clear data vector
 void Model::clearVector() {
     citizen.clear();
 }
+// CLOSE //clear data vector
 
-// OPEN //добавление записи в файл
+
+
+// OPEN //adding an entry to a file
 void Model::add(people x) {
     ofstream outf("C:\\zzz\\inf-people.txt", ios::app);
     if (!outf.eof()) {
@@ -70,18 +77,20 @@ void Model::add(people x) {
     cout << "\n";
     outf.close();
 };
-// CLOSE //добавление записи в файл
+// CLOSE //adding an entry to a file
 
 
-// OPEN //чистим файл для перезаписи
+
+// OPEN //clean the file for rewriting
 void Model::clearFile() {
     ofstream outf("C:\\zzz\\inf-people.txt", ios::out | ios::trunc);
     outf.close();
 }
-// CLOSE //чистим файл для перезаписи
+// CLOSE //clean the file for rewriting
 
 
-// OPEN //добавляем записи с файла в вектор
+
+// OPEN //add records from the file to the vector
 void Model::addToVector() {
     ifstream inf("C:\\zzz\\inf-people.txt");
     int i = 0;
@@ -103,8 +112,11 @@ void Model::addToVector() {
     }
     inf.close();
 }
-// CLOSE //добавляем записи с файла в вектор
+// CLOSE //add records from the file to the vector
 
+
+
+// OPEN // looking for a profile by word
 people Model::searchProfileByKey(string key) {
     int i;
     people x;
@@ -122,25 +134,16 @@ people Model::searchProfileByKey(string key) {
         }
     }
     if (check == true) {
-        x.name = "Не найдено";
+        x.name = "Not found";
         return x;
     }
 
 }
+// CLOSE // looking for a profile by word
 
-people Model::returnPerson(int i) {
-    int vecSize = citizen.size();
-    people x;
-    for (; i < vecSize; i++) {
-        x.name = citizen[i].name;
-        x.surname = citizen[i].surname;
-        x.numberphone = citizen[i].numberphone;
-        x.email = citizen[i].email;
-        return x;
-    }
-};
 
-// OPEN // заменяем слово в векторе
+
+// OPEN // replace the word in the vector
 void Model::edit(int tempNumberProfile, char tempNumber, string replacement) {
     int numberProfile, vectorSize = vecSize();
 
@@ -160,8 +163,11 @@ void Model::edit(int tempNumberProfile, char tempNumber, string replacement) {
         citizen[numberProfile].email = replacement;
     }
 };
-// CLOSE // заменяем слово в векторе
+// CLOSE // replace the word in the vector
 
+
+
+// OPEN // return profile
 people Model::getProfile(int i) {
     people x; 
     x.name = citizen[i].name;
@@ -170,8 +176,11 @@ people Model::getProfile(int i) {
     x.email = citizen[i].email;
     return x;
 }
+// CLOSE // return profile
 
-// OPEN //перезаписываем файл
+
+
+// OPEN // rewriteFile
 void Model::rewriteFile() {
     ofstream outf("C:\\zzz\\inf-people.txt", ios::app);
     int vecSize = citizen.size();
@@ -184,23 +193,24 @@ void Model::rewriteFile() {
     }
     outf.close();
 };
-// CLOSE //перезаписываем файл
+// CLOSE // rewriteFile
 
 
 
-// OPEN //удаляем профиль
+// OPEN // delete profile
 void Model::delProfile(int numberProfile) {
     int vectorSize = vecSize();
     numberProfile -= 1;
     citizen.erase(citizen.begin() + numberProfile);
 };
-// CLOSE //удаляем профиль
+// CLOSE // delete profile
 
 
 
-
+// OPEN // function to return the length of a vector
 int Model::vecSize()
 {
     int a = citizen.size();
     return a;
 };
+// CLOSE // function to return the length of a vector

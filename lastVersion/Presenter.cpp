@@ -15,63 +15,63 @@ void Presenter::start()
     char choice;
     bool end = false;
     while (end != true) {
-        myModel.clearVector();//чистим вектор
-        myModel.addToVector();//добавл€ем профили с файла в вектор
-        choice = myView.getStartChoice();//показываем стартовый вывод
+        myModel.clearVector();//clean vector
+        myModel.addToVector();//add profiles from file to vector
+        choice = myView.getStartChoice();//showing the starting output
 
         if (choice == '1') 
         {
-            int vectorSize = myModel.vecSize();//получаем длину вектора
+            int vectorSize = myModel.vecSize();//we get the length of the vector
             for (int i = 0; i < vectorSize; i++) {
-                people x;// создаем временный профиль
-                x = myModel.returnPerson(i); //получаем профиль
-                myView.showAllProfile(i, x); //выводим профиль
+                people x;//create a temporary profile
+                x = myModel.getProfile(i); //get the profile
+                myView.showAllProfile(i, x); //display the profile
             }
         }
         else if (choice == '2')
         {
             people x;
-            int vectorSize = myModel.vecSize();//получаем длину вектора
-            x = myView.createProfile(); // создаем профиль
-            x.numberphone = numberPhoneCheck(vectorSize); // проверка на повтор номера телефона
-            x.email = validationEmail(); // валидаци€ почты
-            myModel.add(x); // добавл€ем в вектор профиль
+            int vectorSize = myModel.vecSize();//we get the length of the vector
+            x = myView.createProfile(); //create profile
+            x.numberphone = numberPhoneCheck(vectorSize); //check for repeating phone number
+            x.email = validationEmail(); //email validation
+            myModel.add(x); //add to the vector
         }
         else if (choice == '3') 
         {
-            int numberProfile;//номер профил€ с которым работаем
-            int vectorSize = myModel.vecSize();//получаем длину вектора
-            char choice;//переменнаю дл€ выбора
-            people x;// создаем временный профиль
-            string editReplaceWord;//слово замены 
+            int numberProfile;//profile number with which we work
+            int vectorSize = myModel.vecSize();//we get the length of the vector
+            char choice;//variable to select
+            people x;//create a temporary profile
+            string editReplaceWord;//replacement word
 
             numberProfile = myView.getNumberProfileToEdit(vectorSize);
             choice = myView.getChoice();
-            x = myModel.getProfile(numberProfile); // получаем данные профил€
-            editReplaceWord = myView.getReplacementWord(choice, x, numberProfile);// получаем замен€ющее слово
-            editReplaceWord = myView.showCheckRepeatWordWithCurrent(editReplaceWord,x,numberProfile,choice);// проверка слова замены с текущим
-            myModel.edit(numberProfile, choice, editReplaceWord); // замена слова
-            myModel.clearFile();// чистим файл
-            myModel.rewriteFile();// переписываем файл
+            x = myModel.getProfile(numberProfile); //get profile data
+            editReplaceWord = myView.getReplacementWord(choice, x, numberProfile);//we get the replacement word
+            editReplaceWord = myView.showCheckRepeatWordWithCurrent(editReplaceWord,x,numberProfile,choice);//checking the replacement word with the current one
+            myModel.edit(numberProfile, choice, editReplaceWord); //word replacement
+            myModel.clearFile();//clean file
+            myModel.rewriteFile();//rewriting file
         }
         else if (choice == '4') 
         {
             int numberProfile;
-            int vectorSize = myModel.vecSize();// получаем длину вектора
-            numberProfile = myView.getTheNumberOfTheDeleteProfile(vectorSize);// получаем номер профил€ с которым работаем
-            myModel.delProfile(numberProfile); // удал€ем этот профиль
-            myModel.clearFile();// чистим файл
-            myModel.rewriteFile();// переписываем файл
+            int vectorSize = myModel.vecSize();//we get the length of the vector
+            numberProfile = myView.getTheNumberOfTheDeleteProfile(vectorSize);//profile number with which we work
+            myModel.delProfile(numberProfile); //delete the profile
+            myModel.clearFile();//clean file
+            myModel.rewriteFile();//rewriting file
         }
         else if (choice == '5') 
         {
             people x;
-            string key = myView.getKeyToSearchProfile();// получаем ключ по которому ищем профиль
-            x = myModel.searchProfileByKey(key); // возвращаем этот профиль
-            myView.showFoundProfile(x);// выводим профиль в консоль
+            string key = myView.getKeyToSearchProfile();//get the key by which we are looking for the profile
+            x = myModel.searchProfileByKey(key); //return this profile
+            myView.showFoundProfile(x);//display the profile in the console
         }
         else if (choice == '6') {
-            end = true;// конец цикла 
+            end = true;//the end
         }
     }
 };

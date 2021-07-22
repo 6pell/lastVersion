@@ -25,7 +25,6 @@ public:
 	bool checkEmail(const string& str);
 	bool checkRepeatWordNumber(string tempNumber, int vectorSize);
 	
-	people returnPerson(int i);
 	people getProfile(int i);
 	people searchProfileByKey(string key);
 
