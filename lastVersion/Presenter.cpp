@@ -86,7 +86,7 @@ string Presenter::numberPhoneCheck(int vectorSize) {
     while (true) {
         checkRepeatNumber = myModel.checkRepeatWordNumber(tempPhone, vectorSize);
         if (checkRepeatNumber == true) {
-            myView.showMessage("Такой номер существует, введите другой ");
+            myView.showMessage("This number exists, please enter another");
             tempPhone = myView.showAddPhone();
         }
         else if (checkRepeatNumber == false) {
@@ -106,7 +106,7 @@ string Presenter::validationEmail() {
     while (end == false) {
         checkEmail = myModel.checkEmail(tempEmail);
         if (checkEmail == false) {
-            myView.showMessage("Это не почта ");
+            myView.showMessage("This is not mail");
             tempEmail = myView.showAddEmail();
         }
         else {
