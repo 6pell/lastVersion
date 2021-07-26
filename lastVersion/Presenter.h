@@ -13,16 +13,22 @@ class Presenter
 	public:
 		Presenter() {};
 		void start();	
+		
+
+
+
 	private:
 		string validationEmail();
 		string numberPhoneCheck();
+		int returnChoice();
 		int editNumberProfileCkeckWrong();
 		int deleteNumberProfileCkeckWrong();
-		void outputData();
 		void searchPerson();
 		void deletePerson();
 		void editPerson();
 		void addPerson();
+		void outputData();
+		//void test2();
 };
 
 #endif

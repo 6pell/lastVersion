@@ -10,6 +10,7 @@
 View myView;
 Model myModel;
 
+
 void Presenter::start()
 {
     int choice;
@@ -17,8 +18,8 @@ void Presenter::start()
     while (end != true) {
         myModel.clearData();//clean vector
         myModel.loadData();//add profiles from file to vector
-        choice = myView.getStartChoice();//showing the starting output
-
+        choice = returnChoice();
+        
         if (choice == 1) 
         {
             outputData();
@@ -48,17 +49,15 @@ void Presenter::start()
 string Presenter::numberPhoneCheck() {
     string tempPhone;
     bool checkRepeatNumber = false;
-    bool validationPhone = false;
-    bool whileBool = false;
     
-    tempPhone = myView.getAddPhone();
+    tempPhone = myView.readAddPhone();
     checkRepeatNumber = myModel.checkDuplicate(tempPhone);
 
     while (true) {
         checkRepeatNumber = myModel.checkDuplicate(tempPhone);
         if (checkRepeatNumber == false) {
             myView.showMessage("This number exists, please enter another");
-            tempPhone = myView.getAddPhone();
+            tempPhone = myView.readAddPhone();
         }
         else {
             break;
@@ -68,18 +67,19 @@ string Presenter::numberPhoneCheck() {
 };
 
 
+
 string Presenter::validationEmail() {
     string tempEmail;
     bool end = false, checkEmail = false;
 
-    tempEmail = myView.getAddEmail();
+    tempEmail = myView.readAddEmail();
     checkEmail = myModel.checkEmail(tempEmail);
 
     while (end == false) {
         checkEmail = myModel.checkEmail(tempEmail);
         if (checkEmail == false) {
             myView.showMessage("This is not mail");
-            tempEmail = myView.getAddEmail();
+            tempEmail = myView.readAddEmail();
         }
         else {
             return tempEmail;
@@ -89,12 +89,12 @@ string Presenter::validationEmail() {
 
 int Presenter::editNumberProfileCkeckWrong() {
     int size = myModel.size();
-    int numberProfile = myView.getNumberProfileToEdit();
+    int numberProfile = myView.readNumberProfileToEdit();
     while (true) {
         if (numberProfile == 0) {
             cin.clear();
             cin.ignore(32767, '\n');
-            numberProfile = myView.getNumberProfileToEdit();
+            numberProfile = myView.readNumberProfileToEdit();
         }
         else
         {
@@ -103,7 +103,7 @@ int Presenter::editNumberProfileCkeckWrong() {
     }
     while (numberProfile > size) {
         myView.showWrongNumberProfile(size);
-        numberProfile = myView.getNumberProfileToEdit();
+        numberProfile = myView.readNumberProfileToEdit();
         if (numberProfile <= size) {
             break;
         }
@@ -114,12 +114,12 @@ int Presenter::editNumberProfileCkeckWrong() {
 
 int Presenter::deleteNumberProfileCkeckWrong() {
     int size = myModel.size();
-    int numberProfile = myView.getTheNumberOfTheDeleteProfile();
+    int numberProfile = myView.readTheNumberOfTheDeleteProfile();
     while (true) {
         if (numberProfile == 0) {
             cin.clear();
             cin.ignore(32767, '\n');
-            numberProfile = myView.getTheNumberOfTheDeleteProfile();
+            numberProfile = myView.readTheNumberOfTheDeleteProfile();
         }
         else
         {
@@ -128,7 +128,7 @@ int Presenter::deleteNumberProfileCkeckWrong() {
     }
     while (numberProfile > size) {
         myView.showWrongNumberProfile(size);
-        numberProfile = myView.getTheNumberOfTheDeleteProfile();
+        numberProfile = myView.readTheNumberOfTheDeleteProfile();
         if (numberProfile <= size) {
             break;
         }
@@ -161,9 +161,9 @@ void Presenter::editPerson() {
     People tempProfile;//create a temporary profile
     string editReplaceWord;//replacement word
 
-    choice = myView.getChoice();
+    choice = myView.readChoice();
     tempProfile = myModel.getProfile(numberProfile); //get profile data
-    editReplaceWord = myView.getReplacementWord(choice, tempProfile);//we get the replacement word
+    editReplaceWord = myView.readReplacementWord(choice, tempProfile);//we get the replacement word
     editReplaceWord = myView.showCheckRepeatWordWithCurrent(editReplaceWord, tempProfile, choice);//checking the replacement word with the current one
     myModel.edit(numberProfile, choice, editReplaceWord); //word replacement
     myModel.clearFile();//clean file
@@ -180,7 +180,23 @@ void Presenter::deletePerson() {
 
 void Presenter::searchPerson() {
     People tempProfile;
-    string key = myView.getKeyToSearchProfile();//get the key by which we are looking for the profile
+    string key = myView.readKeyToSearchProfile();//get the key by which we are looking for the profile
     tempProfile = myModel.searchProfileByKey(key); //return this profile
     myView.showFoundProfile(tempProfile);//display the profile in the console
+}
+
+int Presenter::returnChoice() {
+    int choice = myView.readStartChoice();
+    while (true) {
+        if (choice == 0) {
+            cin.clear();
+            cin.ignore(32767, '\n');
+            choice = myView.readStartChoice();
+        }
+        else
+        {
+            break;
+        }
+    }
+    return choice;
 }

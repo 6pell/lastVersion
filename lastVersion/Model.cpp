@@ -4,6 +4,8 @@
 
 using namespace std;
 
+const string path = "C:\\zzz\\inf-people.txt";
+
 // OPEN //check for repetition of the normer when working in ADD
 bool Model::checkDuplicate(string tempNumber)
 {
@@ -31,12 +33,7 @@ bool Model::checkEmail(const string& str)
 {
     string temp = str;
     const bool isEmail = IsEmail(temp);
-    if (isEmail == false) {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return isEmail;
 }
 // CLOSE //validation Email
 
@@ -62,7 +59,7 @@ void Model::clearData() {
 
 // OPEN //adding an entry to a file
 void Model::add(People x) {
-    ofstream outf("C:\\zzz\\inf-people.txt", ios::app);
+    ofstream outf(path, ios::app);
     if (!outf.eof()) {
         outf << "\n";
     }
@@ -79,7 +76,7 @@ void Model::add(People x) {
 
 // OPEN //clean the file for rewriting
 void Model::clearFile() {
-    ofstream outf("C:\\zzz\\inf-people.txt", ios::out | ios::trunc);
+    ofstream outf(path, ios::out | ios::trunc);
     outf.close();
 }
 // CLOSE //clean the file for rewriting
@@ -88,7 +85,7 @@ void Model::clearFile() {
 
 // OPEN //add records from the file to the vector
 void Model::loadData() {
-    ifstream inf("C:\\zzz\\inf-people.txt");
+    ifstream inf(path);
     int i = 0;
     while (inf)
     {
@@ -117,21 +114,17 @@ People Model::searchProfileByKey(string key) {
     int i;
     People x;
     int vecSize = citizen.size();
-    bool check = true;
     for (i = 0; i < vecSize; i++) {
         if (citizen[i].name == key || citizen[i].surname == key || citizen[i].numberphone == key || citizen[i].email == key) {
             x.name = citizen[i].name;
             x.surname = citizen[i].surname;
             x.numberphone = citizen[i].numberphone;
             x.email = citizen[i].email;
-            check = false;
             return x;
         }
     }
-    if (check == true) {
-        x.name = "Not found";
-        return x;
-    }
+    x.name = "Not found";
+    return x;
 }
 // CLOSE // looking for a profile by word
 
@@ -174,7 +167,7 @@ People Model::getProfile(int i) {
 
 // OPEN // rewriteFile
 void Model::rewriteFile() {
-    ofstream outf("C:\\zzz\\inf-people.txt", ios::app);
+    ofstream outf(path, ios::app);
     int vecSize = citizen.size();
     for (int i = 0; i < vecSize; i++) {
         outf << citizen[i].name << endl;
@@ -192,8 +185,7 @@ void Model::rewriteFile() {
 // OPEN // delete profile
 void Model::delProfile(int numberProfile) {
     int vectorSize = size();
-    numberProfile -= 1;
-    citizen.erase(citizen.begin() + numberProfile);
+    citizen.erase(citizen.begin() + numberProfile-1);
 };
 // CLOSE // delete profile
 

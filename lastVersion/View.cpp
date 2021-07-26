@@ -6,7 +6,7 @@
 #include <fstream>
 
 
-char View::getStartChoice()
+char View::readStartChoice()
 {
     int choice;
     cout << "Enter (1) to view all profiles" << endl;
@@ -36,38 +36,38 @@ void View::showProfile(int i, People x)
 
 People View::createProfile() {
     People x;
-    x.name = getAddName();
-    x.surname = getAddSurname();
+    x.name = readAddName();
+    x.surname = readAddSurname();
     return x;
 }
 
-string View::getAddName() {
+string View::readAddName() {
     string name;
     cout << "Name = ";
     cin >> name;
     return name;
 }
-string View::getAddSurname() {
+string View::readAddSurname() {
     string surname;
     cout << "Surname = ";
     cin >> surname;
     return surname;
 
 }
-string View::getAddPhone() {
+string View::readAddPhone() {
     string numberphone;
     cout << "Phone = ";
     cin >> numberphone;
     return numberphone;
 }
-string View::getAddEmail() {
+string View::readAddEmail() {
     string email;
     cout << "Email = ";
     cin >> email;
     return email;
 }
 
-string View::getKeyToSearchProfile() {
+string View::readKeyToSearchProfile() {
     string keyWord;
     cout << "The word by which you want to find a profile = ";
     cin >> keyWord;
@@ -94,7 +94,7 @@ void View::showFoundProfile(People x) {
     }
 }
 
-int View::getTheNumberOfTheDeleteProfile() {
+int View::readTheNumberOfTheDeleteProfile() {
     int numberProfile = 0;
     cout << "Which profile do you want to delete?" << endl;
     cin >> numberProfile;
@@ -102,7 +102,7 @@ int View::getTheNumberOfTheDeleteProfile() {
     return numberProfile;
 }
 
-int View::getNumberProfileToEdit() {
+int View::readNumberProfileToEdit() {
     int numberProfile = 0;
     cout << "Which profile do you want to change?" << endl;
     cin >> numberProfile;
@@ -114,7 +114,7 @@ void View::showWrongNumberProfile(int size) {
     cout << "We don't have that many profiles, please enter from 1 to " << size << endl;
 }
 
-char View::getChoice() {
+char View::readChoice() {
     
     char b;
     cout << "Change Name(1), Surname(2), Phone(3), Email(4)" << endl;
@@ -122,7 +122,7 @@ char View::getChoice() {
     return b;
 }
 
-string View::getReplacementWord(char choice, People tempProfile) {
+string View::readReplacementWord(char choice, People tempProfile) {
     string replacement;
     if (choice == '1') {
         cout << "The name that is written in the file = " << tempProfile.name << ", enter another name ";
