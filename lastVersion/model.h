@@ -15,29 +15,28 @@ using namespace std;
 
 class Model {
 private:
-	vector<people> citizen;
+	vector<People> citizen;
 public:
 	Model() {};
 
-	int vecSize();
+	int size();
 
 	bool IsEmail(const string& str);
+	bool isNumber(const string& tel);
 	bool checkEmail(const string& str);
-	bool checkRepeatWordNumber(string tempNumber, int vectorSize);
-	
-	people getProfile(int i);
-	people searchProfileByKey(string key);
+	bool checkDuplicate(string tempNumber);
+
+	People getProfile(int i);
+	People searchProfileByKey(string key);
 
 	void clearFile();
-	void addToVector();
-	void clearVector();
+	void add(People x);
+	void loadData();
+	void clearData();
 	void rewriteFile();
 	void delProfile(int numberProfile);
-	void add(people x);
-	void edit(int tempNumberProfile, char tempNumber, string replacement);
-
-	
-	
+	void edit(int numberProfile, char choice, string replacementWord);	
+	//edit choice = variable to select that we edit
 	
 
 };

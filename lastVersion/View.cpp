@@ -8,7 +8,7 @@
 
 char View::getStartChoice()
 {
-    char choice;
+    int choice;
     cout << "Enter (1) to view all profiles" << endl;
     cout << "Enter (2) to add a profile" << endl;
     cout << "Enter (3) to edit" << endl;
@@ -16,11 +16,14 @@ char View::getStartChoice()
     cout << "Enter (5) to find a profile" << endl;
     cout << "Enter (6) to log out" << endl;
     cin >> choice;
+    if (choice > 6) {
+        cout << "Please enter from 1 to 6 " << endl;
+    }
     return choice;
 };
 
 
-void View::showAllProfile(int i, people x)
+void View::showProfile(int i, People x)
 {
     cout << "\n";
     cout << "/***Profile #" << i + 1 << "***/" << endl;
@@ -31,33 +34,33 @@ void View::showAllProfile(int i, people x)
     cout << "\n";
 };
 
-people View::createProfile() {
-    people x;
-    x.name = showAddName();
-    x.surname = showAddSurname();
+People View::createProfile() {
+    People x;
+    x.name = getAddName();
+    x.surname = getAddSurname();
     return x;
 }
 
-string View::showAddName() {
+string View::getAddName() {
     string name;
     cout << "Name = ";
     cin >> name;
     return name;
 }
-string View::showAddSurname() {
+string View::getAddSurname() {
     string surname;
     cout << "Surname = ";
     cin >> surname;
     return surname;
 
 }
-string View::showAddPhone() {
+string View::getAddPhone() {
     string numberphone;
     cout << "Phone = ";
     cin >> numberphone;
     return numberphone;
 }
-string View::showAddEmail() {
+string View::getAddEmail() {
     string email;
     cout << "Email = ";
     cin >> email;
@@ -76,7 +79,7 @@ void View::showMessage(const char msg[])
     cout << msg << endl;
 };
 
-void View::showFoundProfile(people x) {
+void View::showFoundProfile(People x) {
     if (x.surname == "") {
         cout << x.name << endl;
     }
@@ -91,57 +94,24 @@ void View::showFoundProfile(people x) {
     }
 }
 
-int View::getTheNumberOfTheDeleteProfile(int vecSize) {
-    int numberProfile;
-    while (true) {
-        cout << "Which profile do you want to delete?" << endl;
-        cin >> numberProfile;
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(32767, '\n');
-        }
-        else {
-            break;
-        }
-    }
-    while (numberProfile > vecSize) {
-        cout << "We don't have that many profiles, please enter from 1 to " << vecSize << endl;
-        cin >> numberProfile;
-        if (numberProfile <= vecSize) {
-            break;
-        }
-    }
+int View::getTheNumberOfTheDeleteProfile() {
+    int numberProfile = 0;
+    cout << "Which profile do you want to delete?" << endl;
+    cin >> numberProfile;
+
     return numberProfile;
 }
 
-int View::getNumberProfileToEdit(int vecSize) {
+int View::getNumberProfileToEdit() {
     int numberProfile = 0;
-    string replacement;
+    cout << "Which profile do you want to change?" << endl;
+    cin >> numberProfile;
 
-    while (true) {
-        cout << "Which profile do you want to change?" << endl;
-        cin >> numberProfile;
-        if (cin.fail())
-        {
-            cin.clear();
-            cin.ignore(32767, '\n');
-        }
-        else
-        {
-            numberProfile -= 1;
-            return numberProfile;
-        }
-    }
-    while (numberProfile > vecSize) {
-        cout << "We don't have that many profiles, please enter from 1 to " << vecSize << endl;
-        cin >> numberProfile;
-        if (numberProfile <= vecSize) {
-            break;
-        }
-    }
-    numberProfile -= 1;
     return numberProfile;
+}
+
+void View::showWrongNumberProfile(int size) {
+    cout << "We don't have that many profiles, please enter from 1 to " << size << endl;
 }
 
 char View::getChoice() {
@@ -152,68 +122,64 @@ char View::getChoice() {
     return b;
 }
 
-string View::getReplacementWord(char b,people x, int d) {
+string View::getReplacementWord(char choice, People tempProfile) {
     string replacement;
-    d -= 1;
-    if (b == '1') {
-        cout << "The name that is written in the file = " << x.name << ", enter another name ";
+    if (choice == '1') {
+        cout << "The name that is written in the file = " << tempProfile.name << ", enter another name ";
         cin >> replacement;
     }
-    else if (b == '2') {
-        cout << "Surname which is written in the file = "<< x.surname <<", enter another surname ";
+    else if (choice == '2') {
+        cout << "Surname which is written in the file = "<< tempProfile.surname <<", enter another surname ";
         cin >> replacement;
     }
-    else if (b == '3') {
-        cout << "The number recorded in the file =" << x.numberphone << ", please enter another number ";
+    else if (choice == '3') {
+        cout << "The number recorded in the file =" << tempProfile.numberphone << ", please enter another number ";
         cin >> replacement;
     }
-    else if (b == '4') {
-        cout << "Mail which is written in the file =" << x.email << ", please enter another mail ";
+    else if (choice == '4') {
+        cout << "Mail which is written in the file =" << tempProfile.email << ", please enter another mail ";
         cin >> replacement;
     }
     return replacement;
 }
 
 
-string View::showCheckRepeatWordWithCurrent(string editReplaceWord, people x, int n, char b) {
-    int i = 0;
-    n -= 1;
-    while (i != 1) {
-        
-        if (b == '1') {
-            if (editReplaceWord == x.name) {
+string View::showCheckRepeatWordWithCurrent(string editReplaceWord, People tempProfile, char choice) {
+    while (true) {
+        if (choice == '1') {
+            if (editReplaceWord == tempProfile.name) {
                 cout << "This word is the same as what you want to edit, please enter another " << endl;
                 cin >> editReplaceWord;
             }
             else {
-                i = 1;
+               break;
             }
         }
-        else if (b == '2') {
-            if (editReplaceWord == x.surname) {
+        else if (choice == '2') {
+            if (editReplaceWord == tempProfile.surname) {
                 cout << "This word is the same as what you want to edit, please enter another " << endl;
                 cin >> editReplaceWord;
             }
             else {
-                i = 1;
+                break;
             }
         }
-        else if (b == '3') {
-            if (editReplaceWord == x.numberphone) {
+        else if (choice == '3') {
+            if (editReplaceWord == tempProfile.numberphone) {
                 cout << "This word is the same as what you want to edit, please enter another " << endl;
                 cin >> editReplaceWord;
             }
             else {
-                i = 1;
+                break;
             }
         }
-        else if (b == '4') {
-            if (editReplaceWord == x.email) {
+        else if (choice == '4') {
+            if (editReplaceWord == tempProfile.email) {
                 cout << "This word is the same as what you want to edit, please enter another " << endl;
                 cin >> editReplaceWord;
             }
             else {
-                i = 1;
+                break;
             }
         }
         

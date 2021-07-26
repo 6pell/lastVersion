@@ -1,32 +1,19 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <vector>
 #include <regex>
 #include "model.h"
-#include "people.h"
 
 using namespace std;
 
 // OPEN //check for repetition of the normer when working in ADD
-bool Model::checkRepeatWordNumber(string tempNumber, int vectorSize)
+bool Model::checkDuplicate(string tempNumber)
 {
-    int repeatCounter = 0;
+    int vectorSize = size();
     for (int i = 0; i < vectorSize; i++)
     {
         if (citizen[i].numberphone == tempNumber)
         {
-            return true;
+            return false;
         }
-        else
-        {
-            repeatCounter++;
-        }
-    }
-    if (repeatCounter == vectorSize)
-    {
-        return false;
     }
 };
 // CLOSE //check for repetition of the normer when working in ADD
@@ -42,7 +29,6 @@ bool Model::IsEmail(const string& str)
 
 bool Model::checkEmail(const string& str)
 {
-    View myView;
     string temp = str;
     const bool isEmail = IsEmail(temp);
     if (isEmail == false) {
@@ -56,8 +42,18 @@ bool Model::checkEmail(const string& str)
 
 
 
+// OPEN // validation numberPhone
+bool Model::isNumber(const string& tel) 
+{
+    regex rx("^\\+\\d{1,2}\\(\\d{3,5}\\)\\d{2,7}$");
+    return regex_match(tel, rx);
+}
+// CLOSE // validation numberPhone
+
+
+
 // OPEN //clear data vector
-void Model::clearVector() {
+void Model::clearData() {
     citizen.clear();
 }
 // CLOSE //clear data vector
@@ -65,7 +61,7 @@ void Model::clearVector() {
 
 
 // OPEN //adding an entry to a file
-void Model::add(people x) {
+void Model::add(People x) {
     ofstream outf("C:\\zzz\\inf-people.txt", ios::app);
     if (!outf.eof()) {
         outf << "\n";
@@ -91,12 +87,12 @@ void Model::clearFile() {
 
 
 // OPEN //add records from the file to the vector
-void Model::addToVector() {
+void Model::loadData() {
     ifstream inf("C:\\zzz\\inf-people.txt");
     int i = 0;
     while (inf)
     {
-        people temp;
+        People temp;
         string strInput;
         inf >> strInput;
         if (strInput == "") {
@@ -117,14 +113,13 @@ void Model::addToVector() {
 
 
 // OPEN // looking for a profile by word
-people Model::searchProfileByKey(string key) {
+People Model::searchProfileByKey(string key) {
     int i;
-    people x;
+    People x;
     int vecSize = citizen.size();
-    bool searchBK, check = true;
+    bool check = true;
     for (i = 0; i < vecSize; i++) {
         if (citizen[i].name == key || citizen[i].surname == key || citizen[i].numberphone == key || citizen[i].email == key) {
-            searchBK = true;
             x.name = citizen[i].name;
             x.surname = citizen[i].surname;
             x.numberphone = citizen[i].numberphone;
@@ -137,30 +132,27 @@ people Model::searchProfileByKey(string key) {
         x.name = "Not found";
         return x;
     }
-
 }
 // CLOSE // looking for a profile by word
 
 
 
 // OPEN // replace the word in the vector
-void Model::edit(int tempNumberProfile, char tempNumber, string replacement) {
-    int numberProfile, vectorSize = vecSize();
+void Model::edit(int numberProfile, char choice, string replacementWord) {
+    int vectorSize = size();
 
-    numberProfile = tempNumberProfile;
-
-    if (tempNumber == '1') {
-        citizen[numberProfile].name = replacement;
+    if (choice == '1') {
+        citizen[numberProfile].name = replacementWord;
     }
-    else if (tempNumber == '2') {
-        citizen[numberProfile].surname = replacement;
+    else if (choice == '2') {
+        citizen[numberProfile].surname = replacementWord;
     }
-    else if (tempNumber == '3') {
+    else if (choice == '3') {
         
-        citizen[numberProfile].numberphone = replacement;
+        citizen[numberProfile].numberphone = replacementWord;
     }
-    else if (tempNumber == '4') {
-        citizen[numberProfile].email = replacement;
+    else if (choice == '4') {
+        citizen[numberProfile].email = replacementWord;
     }
 };
 // CLOSE // replace the word in the vector
@@ -168,8 +160,8 @@ void Model::edit(int tempNumberProfile, char tempNumber, string replacement) {
 
 
 // OPEN // return profile
-people Model::getProfile(int i) {
-    people x; 
+People Model::getProfile(int i) {
+    People x;
     x.name = citizen[i].name;
     x.surname = citizen[i].surname;
     x.numberphone = citizen[i].numberphone;
@@ -199,7 +191,7 @@ void Model::rewriteFile() {
 
 // OPEN // delete profile
 void Model::delProfile(int numberProfile) {
-    int vectorSize = vecSize();
+    int vectorSize = size();
     numberProfile -= 1;
     citizen.erase(citizen.begin() + numberProfile);
 };
@@ -208,7 +200,7 @@ void Model::delProfile(int numberProfile) {
 
 
 // OPEN // function to return the length of a vector
-int Model::vecSize()
+int Model::size()
 {
     int a = citizen.size();
     return a;

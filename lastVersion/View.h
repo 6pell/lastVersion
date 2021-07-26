@@ -8,25 +8,28 @@
 class View
 {
 	public:
-		int getTheNumberOfTheDeleteProfile(int vecSize);
-		int getNumberProfileToEdit(int vecSize);
+		//People tempProfile - temporary Profile;
+		int getTheNumberOfTheDeleteProfile();
+		int getNumberProfileToEdit();
 
 		char getChoice();
 		char getStartChoice();
 
 		void showMessage(const char msg[]);
-		void showAllProfile(int i, people x);
-		void showFoundProfile(people x);
+		void showWrongNumberProfile(int size);
+		void showFoundProfile(People tempProfile);
+		void showProfile(int i, People tempProfile);
 
 		string getKeyToSearchProfile();
-		string getReplacementWord(char b, people x, int d);
-		string showAddName();
-		string showAddSurname();
-		string showAddPhone();
-		string showAddEmail();
-		string showCheckRepeatWordWithCurrent(string editReplaceWord, people x, int n, char b);
+		string getReplacementWord(char choice, People tempProfile);
+		string getAddName();
+		string getAddSurname();
+		string getAddPhone();
+		string getAddEmail();
+		string showCheckRepeatWordWithCurrent(string editReplaceWord, People tempProfile, char choice);
 
-		people createProfile();
+		People createProfile();
+		
 		
 		
 };

@@ -12,10 +12,17 @@ class Presenter
 {
 	public:
 		Presenter() {};
-		void start();
+		void start();	
+	private:
 		string validationEmail();
-		string numberPhoneCheck(int vectorSize);
-		
+		string numberPhoneCheck();
+		int editNumberProfileCkeckWrong();
+		int deleteNumberProfileCkeckWrong();
+		void outputData();
+		void searchPerson();
+		void deletePerson();
+		void editPerson();
+		void addPerson();
 };
 
 #endif

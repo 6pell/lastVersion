@@ -1,9 +1,4 @@
 #include <iostream>
-#include <string>
-#include <fstream>
-#include <vector>
-#include "model.h"
-#include "people.h"
 #include <cstdlib>
 #include "Presenter.h"
 

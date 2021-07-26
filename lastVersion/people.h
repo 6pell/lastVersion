@@ -4,7 +4,7 @@
 
 using namespace std;
 
-struct people
+struct People
 {
     string name;
     string surname;
